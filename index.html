@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>HTML5 WebApp</title>
+        <meta name="HandheldFriendly" content="True">
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=yes">
+        <meta http-equiv="cleartype" content="on">
+
+        <link href="static/images/icon-57.png" sizes="57x57" rel="apple-touch-icon">
+        <link href="static/images/startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+        <link href="static/images/startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+        <link rel="stylesheet" href="frameworks/lungo/lungo.css">
+        <link rel="stylesheet" href="frameworks/lungo/lungo.icon.css">
+        <link rel="stylesheet" href="frameworks/lungo/lungo.theme.css">
+        <link rel="stylesheet" href="static/css/app.css">
+    </head>
+    <body>
+
+
+    
+    <section id="splash" data-transition="slide">
+        <article id="login" class="active indented splash">
+            <div class="empty">
+                <h1>Mobile Festival webApp</h1>    
+                <span class="icon star" style="color:#fff; margin:20px 0;"></span>
+                <a href="#" class="button" data-icon="google-plus" data-label="Sign in with Google" id="triggerSignIn"></a>
+            </div>
+        </article>
+    </section>
+
+
+
+    <aside id="menu">
+        <header data-title="Menu"></header>
+        <article class="list scroll active">
+            <ul>
+                <li data-view-section="main"><strong>Home</strong></li>
+                <li data-view-section="users"><strong>Users</strong></li>
+                <li data-view-section="feed"><strong>Feed</strong></li>
+                <li data-view-section="video"><strong>Video</strong></li>
+                <li data-view-section="notifications"><div class="tag on-right" id="notificationnumber">0</div><strong>Notifications</strong></li>
+            </ul>
+        </article>
+    </aside>
+
+
+
+    <section id="main" data-transition="slide" data-aside="menu">
+        <header data-title="Home">
+            <nav><a href="#" data-icon="menu" data-view-aside="menu"></a></nav>
+            <nav class="on-right"><small class="text tiny" style="margin-right:10px">v2.1</small></nav>
+        </header>
+        <article class="active indented" id="home">
+            <div class="empty">
+                <h1 id="userName">Welcome</h1>    
+                <img id="userImg">
+                <p class="margin bottom">
+                <a href="#" id="signout" class="button tiny">Sign Out</a>
+                </p>
+            </div>        
+        </article>
+    </section>
+
+
+
+    <section id="users" data-transition="slide" data-aside="menu">
+        <header data-title="Users">
+            <nav><a href="#" data-icon="menu" data-view-aside="menu"></a></nav>
+            <nav class="on-right"><small class="text tiny" style="margin-right:10px">v2.1</small></nav>
+        </header>
+        <article class="list scroll" id="friendlist">
+            <ul id="frienditems"></ul>
+        </article>
+        <article class="indented" id="friendlocation">
+                <div id="map"></div>
+                <p id="warning"></p>
+        </article>
+        <footer>
+            <nav>
+                <a href="#" data-icon="group" class="active" data-view-article="friendlist"></a>
+                <a href="#" data-icon="map-marker" data-view-article="friendlocation"></a>
+            </nav>
+        </footer>
+    </section>
+
+
+
+    <section id="feed" data-transition="slide" data-aside="menu">
+        <header data-title="Feed">
+            <nav><a href="#" data-icon="menu" data-view-aside="menu"></a></nav>
+            <nav class="on-right"><small class="text tiny" style="margin-right:10px">v2.1</small></nav>
+        </header>
+        <article class="list scroll" id="feedlist">
+            <ul id="feeditems"></ul>
+        </article>
+        <article class="list indented" id="postmessage">      
+            <div class="form">
+                <form id="message-form">
+                    <fieldset>
+                        <textarea placeholder="Status" id="status"></textarea>
+                    </fieldset>
+                </form>
+                <button class="anchor button" data-icon="comment" data-label="Post a status update" id="post-status"></button>
+            </div>
+        </article>
+        <footer>
+            <nav>
+                <a href="#" data-icon="exchange" class="active" data-view-article="feedlist"></a>
+                <a href="#" data-icon="comment" data-view-article="postmessage"></a>
+            </nav>
+        </footer>
+    </section>
+
+
+
+    <section id="video" data-transition="slide" data-aside="menu">
+        <header data-title="Video">
+            <nav><a href="#" data-icon="menu" data-view-aside="menu"></a></nav>
+            <nav class="on-right"><small class="text tiny" style="margin-right:10px">v0.01</small></nav>
+        </header>
+        <article class="list scroll" id="videolist">
+            <ul id="videos"></ul>
+        </article>
+        <article class="list indented" id="videoupload">      
+        <div class="form">
+            <form id="upload-form">
+                <fieldset>
+                    <input id="title" type="text" placeholder="Title">
+                </fieldset>
+                <fieldset>
+                    <textarea placeholder="Description" id="description"></textarea>
+                </fieldset>
+                <input type="file" accept="video/*" id="fileElem" capture>
+            </fieldset>
+            </form>
+            <button class="anchor button" data-icon="video" data-label="Choose or Record a Video" id="fileSelect"></button>
+            <button class="anchor button accept" data-icon="upload" data-label="Upload Video" id="fileUpload"></button>
+            <div id="uploadprogress"> 
+                <label>Progress</label>
+                <div id="progress-normal" data-progress="0%"></div>
+            </div>
+            <ul id="post-upload-status"></ul>
+        </div>
+        </article>
+        <footer>
+            <nav>
+            <a href="#" data-icon="film" class="active" data-view-article="videolist"></a>
+            <a href="#" data-icon="cloud-upload" data-view-article="videoupload"></a>
+            </nav>
+        </footer>
+    </section>
+
+
+
+    <section id="notifications" data-transition="slide" data-aside="menu">
+        <header data-title="Notifications">
+            <nav><a href="#" data-icon="menu" data-view-aside="menu"></a></nav>
+            <nav class="on-right"><small class="text tiny" style="margin-right:10px">v0.01</small></nav>
+        </header>
+        <article id="list" class="active list scroll">
+            <ul id="messages"></ul>
+        </article>
+    </section>
+
+
+    
+    <script src="vendor/quo.js"></script>  
+    <script src="vendor/jquery-1.9.1.js"></script>   
+    <script src="frameworks/lungo/lungo.js"></script>
+    <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+    <script src="https://apis.google.com/js/client:plusone.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script src="static/js/location.js?v=2"></script>
+    <script src="static/js/auth.js"></script>
+    <script src="static/js/youtube-upload.js"></script>
+    <script src="static/js/online-offline.js"></script>
+    <script src="static/js/app.js"></script>
+
+    <script>
+        Lungo.init({
+            name: 'Mobile Festival App',
+            version: '2.1',
+            history: false
+        });
+    </script>
+
+    </body>
+</html>

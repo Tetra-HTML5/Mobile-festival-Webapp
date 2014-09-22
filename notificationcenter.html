@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notification Center</title>
+
+    <!-- Bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Notification Center</h1>
+        <form role="form" id="myForm">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" placeholder="Enter title">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" class="form-control" id="description" placeholder="Enter Description">
+  </div>
+  <a href="#" class="btn btn-default" id="submitbtn">Submit</a>
+  <!-- <button type="submit" class="btn btn-default" >Submit</button> -->
+</form>
+      </div>
+
+    </div>
+    
+    <script>
+    $(document).ready(function() {
+      $('#submitbtn').click(function(event) {
+        event.preventDefault();
+        var userRef = new Firebase('https://festivalapp.firebaseio.com/users');
+        userRef.once('value', function(data) {
+            var userids = Object.keys(data.val());
+            var title = $("#title").val();
+            var description = $("#description").val();
+            //console.log(userids);
+            $.each(userids, function( index, value ) {
+            //console.log( index + ": " + value );
+            var notificationRef = new Firebase('https://festivalapp.firebaseio.com/users/'+value+'/notifications');
+            notificationRef.push({'title' : title, 'description' : description, 'timestamp' : Firebase.ServerValue.TIMESTAMP});
+            });
+        });
+        userRef.on('child_added', function() {
+          $("#title").val('');
+          $("#description").val('');
+        });  
+
+      });
+     });
+
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+  </body>
+</html>

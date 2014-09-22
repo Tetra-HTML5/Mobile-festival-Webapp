@@ -1,0 +1,27 @@
+#userImg{
+	width: 50px;
+	margin: 10px auto;
+}
+
+#fileElem{
+	visibility: hidden; 
+	width: 0; 
+	height: 0;
+}
+
+span.online{
+	font-size: 11px;
+	min-width: 17px;
+	height: 16px;
+	line-height: 16px !important;
+	text-align: center;
+	z-index: 1;
+	display: inline-block !important;
+	background-color: #2ecc71;
+	color: #fff;
+	padding: 0 5px;
+}
+
+#map{
+	height: 100%;
+}
